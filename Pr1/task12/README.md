@@ -43,7 +43,9 @@ The program provides the following functionality:
 ## Usage
 
 **Command-Line Arguments**
-<array_size>: The number of elements in the array.
+
+<array_size>: 
+The number of elements in the array.
 
 <data_type>:
 - 0 for int (integers).
