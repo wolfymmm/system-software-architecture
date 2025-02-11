@@ -40,6 +40,6 @@ The program provides the following functionality:
    ```bash
    ./task12 <array_size> <data_type>
 
-**Example:**
+4. **Example:**
    ```bash
    ./task12 10 2
