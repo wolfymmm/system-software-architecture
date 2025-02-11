@@ -28,17 +28,17 @@ The program provides the following functionality:
 
 1. **Clone the repository** (if applicable):
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/wolfymmm/system-software-architecture.git
+   cd system-software-architecture
 
 2. **Compile the program:**
    ```bash
-   gcc -o array_manipulation array_manipulation.c
+   gcc -Wall task12.c -o task12
 
 
 3. **Run the program:**
    ```bash
-   ./array_manipulation <array_size> <data_type>
+   ./task12 <array_size> <data_type>
 
-   <array_size>: The size of the array (e.g., 10).
-   <data_type>: The type of data (0 for int, 1 for float, 2 for char).
+-<array_size>: The size of the array (e.g., 10).
+-<data_type>: The type of data (0 for int, 1 for float, 2 for char).
