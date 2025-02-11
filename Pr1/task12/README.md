@@ -42,15 +42,15 @@ The program provides the following functionality:
 
 ## Usage
 
-**Command-Line Arguments
+**Command-Line Arguments**
 <array_size>: The number of elements in the array.
 
 <data_type>:
-*0 for int (integers).
-*1 for float (floating-point numbers).
-*2 for char (characters).
+- 0 for int (integers).
+- 1 for float (floating-point numbers).
+- 2 for char (characters).
 
-**Example
+**Example**
 To create an array of 10 random integers:
    ```bash
    ./task12 10 0
@@ -66,19 +66,19 @@ To create an array of 8 random characters:
 ```
 ## Functions
 
-'fill_array':
+`fill_array`:
 Fills the array with random values based on the chosen data type.
 
-'recursive_search':
+`recursive_search`:
 Searches for a value in the array using recursion.
 
-'binary_search':
+`binary_search`:
 Performs a binary search on a sorted array.
 
-'print_array':
+`print_array`:
 Prints the elements of the array.
 
-'main':
+`main`:
 Handles command-line arguments, allocates memory, and calls the appropriate functions.
 
 ## Example
@@ -100,4 +100,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 ## Contact
 If you have any questions or suggestions, feel free to reach out:
 
-*GitHub Issues: Open an issue in this repository.
+- GitHub Issues: Open an issue in this repository.
