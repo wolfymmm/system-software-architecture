@@ -44,10 +44,10 @@ The program provides the following functionality:
 
 **Command-Line Arguments**
 
-<array_size>: 
+`<array_size>`: 
 The number of elements in the array.
 
-<data_type>:
+`<data_type>`:
 - 0 for int (integers).
 - 1 for float (floating-point numbers).
 - 2 for char (characters).
