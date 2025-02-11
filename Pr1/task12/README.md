@@ -40,5 +40,6 @@ The program provides the following functionality:
    ```bash
    ./task12 <array_size> <data_type>
 
--<array_size>: The size of the array (e.g., 10).
--<data_type>: The type of data (0 for int, 1 for float, 2 for char).
+**Example:**
+   ```bash
+   ./task12 10 2
