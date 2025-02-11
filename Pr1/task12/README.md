@@ -30,3 +30,15 @@ The program provides the following functionality:
    ```bash
    git clone https://github.com/your-username/your-repo-name.git
    cd your-repo-name
+
+Compile the program:
+   ```bash
+   gcc -o array_manipulation array_manipulation.c
+
+
+Run the program:
+   ```bash
+   ./array_manipulation <array_size> <data_type>
+
+   <array_size>: The size of the array (e.g., 10).
+   <data_type>: The type of data (0 for int, 1 for float, 2 for char).
