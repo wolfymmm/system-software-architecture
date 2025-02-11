@@ -40,6 +40,64 @@ The program provides the following functionality:
    ```bash
    ./task12 <array_size> <data_type>
 
-4. **Example:**
+## Usage
+
+**Command-Line Arguments
+<array_size>: The number of elements in the array.
+
+<data_type>:
+*0 for int (integers).
+*1 for float (floating-point numbers).
+*2 for char (characters).
+
+**Example
+To create an array of 10 random integers:
    ```bash
-   ./task12 10 2
+   ./task12 10 0
+```
+
+To create an array of 5 random floating-point numbers:
+   ```bash 
+   ./task12 10 0
+```
+To create an array of 8 random characters:
+   ```bash
+   ./task12 8 2
+```
+## Functions
+
+'fill_array':
+Fills the array with random values based on the chosen data type.
+
+'recursive_search':
+Searches for a value in the array using recursion.
+
+'binary_search':
+Performs a binary search on a sorted array.
+
+'print_array':
+Prints the elements of the array.
+
+'main':
+Handles command-line arguments, allocates memory, and calls the appropriate functions.
+
+## Example
+**Input** 
+```bash
+./task12 10 0
+```
+**Output**
+```bash
+Array: 42 67 23 89 12 45 78 34 56 90 
+Enter the value to search: 45
+Value found at index 5 (recursive search).
+Sorted array: 12 23 34 42 45 56 67 78 89 90 
+Value found at index 4 (binary search).
+```
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+## Contact
+If you have any questions or suggestions, feel free to reach out:
+
+*GitHub Issues: Open an issue in this repository.
