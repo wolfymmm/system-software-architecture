@@ -11,6 +11,7 @@ This C program demonstrates how to work with arrays of different data types (`in
 4. [Functions](#functions)
 5. [Example](#example)
 6. [License](#license)
+7. [Contact](#contact)
 
 ---
 
