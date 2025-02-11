@@ -53,6 +53,8 @@ The number of elements in the array.
 - 2 for char (characters).
 
 **Example**
+
+
 To create an array of 10 random integers:
    ```bash
    ./task12 10 0
