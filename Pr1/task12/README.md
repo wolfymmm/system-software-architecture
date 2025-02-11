@@ -1,6 +1,6 @@
 # C Program: Array Manipulation with Recursive and Binary Search
 
-This C program demonstrates how to work with arrays of different data types (`int`, `float`, `char`). It includes functions to fill an array with random values, perform a recursive search, sort the array, and perform a binary search. The program also allows the user to choose the data type via command-line arguments.
+This C program demonstrates how to work with arrays of different data types (`int`, `float`, `char`). It includes functions to fill an array with random values, perform a recursive search, sort the array, and perform a binary search. The program also allows the user to choose the size of array the data type via command-line arguments.
 
 ---
 
