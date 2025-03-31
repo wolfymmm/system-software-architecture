@@ -22,4 +22,4 @@ int main() {
     printf("Time of overflow: %s", ctime(&prev));
     
     return 0;
-  }  
+}
