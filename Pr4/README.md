@@ -7,7 +7,8 @@
 4. [Виявлення помилок у коді](#виявлення-помилок-у-коді)
 5. [Поведінка realloc(3) при помилці](#поведінка-realloc3-при-помилці)
 6. [Використання realloc(3) з NULL або 0](#використання-realloc3-з-NULL-або-0)
-7. [Завдання по варіантах](#завдання-по-варіантах)
+7. [Переписання коду](#переписання-коду)
+8. [Завдання по варіантах](#завдання-по-варіантах)
 
 ---
 ## Максимальний обсяг пам'яті для malloc(3)
@@ -145,7 +146,60 @@ int main() {
 ### Результат:
 ![task 4.6](task4.6.png)
 
-## Завдання по варіантах
+## Переписання коду
 
+### Результат:
+![task 4.7](task4.7.png)
+
+Програма створює динамічний масив із 1000 структур `sbar`, кожна з яких має два поля — `x` і `y`, потім переалокує цей масив до 500 елементів, ініціалізує перший елемент значеннями `x = 10`, `y = 20` і виводить їх на екран, після чого звільняє пам’ять.
+
+## Завдання по варіантах
+### Тест:
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    int n = 10;
+
+    // Використання calloc
+    int *arr1 = (int *)calloc(n, sizeof(int));
+    if (!arr1) {
+        printf("calloc failed\n");
+        return 1;
+    }
+
+    // Використання malloc + memset
+    int *arr2 = (int *)malloc(n * sizeof(int));
+    if (!arr2) {
+        printf("malloc failed\n");
+        free(arr1);
+        return 1;
+    }
+    memset(arr2, 0, n * sizeof(int));
+
+    int equal = 1;
+    for (int i = 0; i < n; i++) {
+        if (arr1[i] != arr2[i]) {
+            equal = 0;
+            break;
+        }
+    }
+
+    if (equal) {
+        printf("calloc and malloc+memset produce the same result\n");
+    } else {
+        printf("Results differ\n");
+    }
+
+    free(arr1);
+    free(arr2);
+
+    return 0;
+}
+```
+
+Тест показав, що calloc і malloc+memset видають однаковий результат
 ### Результат:
 ![task12](task12.png)
