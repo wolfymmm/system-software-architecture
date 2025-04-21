@@ -10,7 +10,7 @@ int main() {
     for (int i = 0; i < 5; i++) {
         ptr[i] = i + 1;
     }
-    ptr = realloc(ptr, 100000000000 * sizeof(int));
+    ptr = realloc(ptr, 10000000000000000000000000000000000000000000000000000000000000000000 * sizeof(int));
 
     if (!ptr) {
         printf("Reallocation failed\n");
