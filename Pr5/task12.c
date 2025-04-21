@@ -21,7 +21,6 @@ void memoryAllocatorMagic() {
     printf("Memory allocated!\n");
     if (setjmp(jumpyJumpyBuffer) == 0) {
         raise(SIGINT);
-        // Пам'ять не буде звільнена, якщо сигнал не спрацьовує
     } else {
         // Тут ми повертаємось після отримання сигналу
         free(memoryPointer);
