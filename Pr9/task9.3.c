@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <limits.h>
+#include <sys/sendfile.h>
 
 int main() {
     const char *filename = "testfile.txt";
@@ -30,7 +31,10 @@ int main() {
     }
 
     char src_path[PATH_MAX];
+    char dst_path[PATH_MAX];
+
     snprintf(src_path, sizeof(src_path), "/tmp/%s", filename);
+    snprintf(dst_path, sizeof(dst_path), "%s/%s", pwd->pw_dir, filename);
 
     FILE *f = fopen(src_path, "w");
     if (!f) {
@@ -40,9 +44,6 @@ int main() {
     fprintf(f, "%s", content);
     fclose(f);
     printf("Created file: %s\n", src_path);
-
-    char dst_path[PATH_MAX];
-    snprintf(dst_path, sizeof(dst_path), "%s/%s", pwd->pw_dir, filename);
 
     int src_fd = open(src_path, O_RDONLY);
     if (src_fd < 0) {
@@ -58,28 +59,27 @@ int main() {
     }
 
     char buffer[4096];
-    ssize_t bytes_read;
-    while ((bytes_read = read(src_fd, buffer, sizeof(buffer))) > 0) {
-        write(dst_fd, buffer, bytes_read);
+    ssize_t bytes;
+    while ((bytes = read(src_fd, buffer, sizeof(buffer))) > 0) {
+        write(dst_fd, buffer, bytes);
     }
 
     close(src_fd);
     close(dst_fd);
     printf("Copied file to: %s\n", dst_path);
 
-    if (chown(dst_path, pwd->pw_uid, pwd->pw_gid) == -1) {
-        perror("Failed to change owner");
+    if (chown(dst_path, pwd->pw_uid, pwd->pw_gid) != 0) {
+        perror("chown");
         return 1;
     }
     printf("Changed owner to %s\n", normal_user);
 
-    printf("\nNow switch to user '%s' and try to:\n", normal_user);
-    printf("1. Edit the file: %s\n", dst_path);
-    printf("2. Save changes\n");
+    printf("\nNow switch to user '%s' in another terminal and:\n", normal_user);
+    printf("1. Edit the file: nano %s\n", dst_path);
+    printf("2. Save changes (Ctrl+O, Enter, Ctrl+X in nano)\n");
     printf("3. Delete the file: rm %s\n", dst_path);
-    printf("\nExpected behavior:\n");
-    printf("- User CAN edit and save the file (they own it).\n");
-    printf("- User CAN delete the file (they have write permission in their home dir).\n");
+    printf("\nPress Enter to exit this program...\n");
+    getchar();
 
     return 0;
 }
