@@ -1,13 +1,14 @@
-#define _POSIX_C_SOURCE 199309L
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
 #include <sys/wait.h>
+#include <string.h>
 
 #define SUBSCRIBER_COUNT 3
 
 pid_t subscribers[SUBSCRIBER_COUNT];
+int signals[SUBSCRIBER_COUNT] = {SIGUSR1, SIGUSR2, SIGTERM};
 
 void subscriber_handler(int signo, siginfo_t *info, void *context) {
     printf("Subscriber (PID: %d) received signal %d from publisher (PID: %d)\n",
@@ -18,6 +19,7 @@ void create_subscriber(int index, int signal_number) {
     pid_t pid = fork();
     if (pid == 0) {
         struct sigaction sa;
+        memset(&sa, 0, sizeof(sa));
         sa.sa_flags = SA_SIGINFO;
         sa.sa_sigaction = subscriber_handler;
         sigemptyset(&sa.sa_mask);
@@ -34,7 +36,7 @@ void create_subscriber(int index, int signal_number) {
         subscribers[index] = pid;
     } else {
         perror("fork");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 }
 
@@ -42,20 +44,20 @@ int main() {
     printf("Publisher PID: %d\n", getpid());
 
     for (int i = 0; i < SUBSCRIBER_COUNT; i++) {
-        int signal_number = SIGRTMIN + i;
-        create_subscriber(i, signal_number);
+        create_subscriber(i, signals[i]);
         sleep(1);
     }
 
     sleep(2);
 
     for (int i = 0; i < SUBSCRIBER_COUNT; i++) {
-        int signal_number = SIGRTMIN + i;
-        kill(subscribers[i], signal_number);
+        kill(subscribers[i], signals[i]);
         printf("Publisher sent signal %d to subscriber %d (PID: %d)\n",
-               signal_number, i, subscribers[i]);
+               signals[i], i, subscribers[i]);
     }
-    sleep(3);
+
+    sleep(2);
+
     for (int i = 0; i < SUBSCRIBER_COUNT; i++) {
         kill(subscribers[i], SIGKILL);
         waitpid(subscribers[i], NULL, 0);
